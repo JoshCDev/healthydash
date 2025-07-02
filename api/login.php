@@ -529,7 +529,7 @@ if (isset($_POST['credential'])) {
             </p>
 
             <div class="logo">
-                <img src="../assets/images/healthydashlogo.png" alt="HealthyDash logo">
+                <img src="/assets/images/healthydashlogo.png" alt="HealthyDash logo">
             </div>
         </form>
     </div>
@@ -590,10 +590,10 @@ if (isset($_POST['credential'])) {
         
         if (field.type === 'password') {
             field.type = 'text';
-            icon.src = '../assets/images/eyes_open.png';
+            icon.src = '/assets/images/eyes_open.png';
         } else {
             field.type = 'password';
-            icon.src = '../assets/images/eyes_closed.png';
+            icon.src = '/assets/images/eyes_closed.png';
         }
     }
 

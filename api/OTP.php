@@ -117,7 +117,7 @@ $remainingDelay = $otpHandler->getRemainingDelay();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>Verify Your Email - HealthyDash</title>
-    <link rel="stylesheet" href="../assets/font/stylesheet.css">
+    <link rel="stylesheet" href="/assets/font/stylesheet.css">
     <style>
         *{
             font-family: 'Mona Sans';

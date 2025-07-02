@@ -405,7 +405,7 @@ try {
                                 class="password-toggle" 
                                 onclick="togglePassword('password')" 
                                 aria-label="Toggle password visibility">
-                            <img src="../assets/images/eyes_closed.png" 
+                            <img src="/assets/images/eyes_closed.png" 
                                  alt="Toggle password" 
                                  class="toggle-icon" 
                                  id="password-toggle-icon">
@@ -434,7 +434,7 @@ try {
                                 class="password-toggle" 
                                 onclick="togglePassword('confirm-password')" 
                                 aria-label="Toggle password visibility">
-                            <img src="../assets/images/eyes_closed.png" 
+                            <img src="/assets/images/eyes_closed.png" 
                                  alt="Toggle password" 
                                  class="toggle-icon" 
                                  id="confirm-password-toggle-icon">
@@ -465,7 +465,7 @@ try {
         <?php endif; ?>
 
         <div class="logo">
-            <img src="../assets/images/healthydashlogo.png" alt="HealthyDash logo">
+            <img src="/assets/images/healthydashlogo.png" alt="HealthyDash logo">
         </div>
     </div>
 
@@ -485,10 +485,10 @@ try {
             
             if (field.type === 'password') {
                 field.type = 'text';
-                icon.src = '../assets/images/eyes_open.png';
+                icon.src = '/assets/images/eyes_open.png';
             } else {
                 field.type = 'password';
-                icon.src = '../assets/images/eyes_closed.png';
+                icon.src = '/assets/images/eyes_closed.png';
             }
         }
 

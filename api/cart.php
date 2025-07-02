@@ -1,6 +1,6 @@
 <?php
-require_once '../includes/config.php';
-require_once '../includes/auth_check.php';
+require_once __DIR__ . '/includes/config.php';
+require_once __DIR__ . '/includes/auth_check.php';
 requireAuth();
 ?>
 <!DOCTYPE html>
@@ -9,7 +9,7 @@ requireAuth();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Cart</title>
-    <link rel="stylesheet" href="../assets/font/stylesheet.css">
+    <link rel="stylesheet" href="/assets/font/stylesheet.css">
     <style>
         * {
             margin: 0;
@@ -308,7 +308,7 @@ requireAuth();
         </header>
 
         <div class="empty-cart-message">
-            <img src="../assets/images/empty-box.png" alt="Empty cart" class="empty-image">
+            <img src="/assets/images/empty-box.png" alt="Empty cart" class="empty-image">
             <p>You haven't added something to cart</p>
         </div>
 

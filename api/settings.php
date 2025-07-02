@@ -9,7 +9,7 @@ requireAuth();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Settings</title>
-    <link rel="stylesheet" href="../assets/font/stylesheet.css">
+    <link rel="stylesheet" href="/assets/font/stylesheet.css">
     <style>
         * {
             margin: 0;

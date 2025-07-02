@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>Reset Password - HealthyDash</title>
-    <link rel="stylesheet" href="../assets/font/stylesheet.css">
+    <link rel="stylesheet" href="/assets/font/stylesheet.css">
     <style>
         *{
             font-family: 'Mona Sans';
@@ -302,7 +302,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </p>
 
         <div class="logo">
-            <img src="../assets/images/healthydashlogo.png" alt="HealthyDash logo">
+            <img src="/assets/images/healthydashlogo.png" alt="HealthyDash logo">
         </div>
     </div>
 

@@ -847,7 +847,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     Already have an account? <a href="login.php">Login</a>
 </p>
             <div class="logo">
-                <img src="../assets/images/healthydashlogo.png" alt="FinTuner logo">
+                <img src="/assets/images/healthydashlogo.png" alt="FinTuner logo">
             </div>
         </form>
     </div>

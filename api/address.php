@@ -9,7 +9,7 @@ requireAuth();
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Choose Location</title>
-    <link rel="stylesheet" href="../assets/font/stylesheet.css">
+    <link rel="stylesheet" href="/assets/font/stylesheet.css">
     <script src="https://maps.googleapis.com/maps/api/js?key=<?php echo htmlspecialchars(GOOGLE_MAPS_API_KEY); ?>&libraries=places"></script>
     <style>
         * {

@@ -70,7 +70,7 @@ foreach ($orders as $order) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../assets/font/stylesheet.css">
+    <link rel="stylesheet" href="/assets/font/stylesheet.css">
     <style>
 * {
     margin: 0;
@@ -324,7 +324,7 @@ h3 {
     </header>
 
     <div class="empty-cart-message" style="display: <?php echo empty($groupedOrders) ? 'flex' : 'none'; ?>">
-        <img src="../assets/images/empty-box.png" alt="Empty history" class="empty-image">
+                    <img src="/assets/images/empty-box.png" alt="Empty history" class="empty-image">
         <p>You haven't purchased something</p>
     </div>
 
