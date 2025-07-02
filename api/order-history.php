@@ -402,13 +402,13 @@ h3 {
                 <?php foreach ($order['items'] as $item): ?>
                     <div class="product">
                         <div class="product-image">
-                            <img src="<?php echo htmlspecialchars($item['image_url']); ?>" alt="<?php echo htmlspecialchars($item['name']); ?>">
+                            <img src="<?php echo htmlspecialchars($item['image_url'] ?? '/assets/images/placeholder.png'); ?>" alt="<?php echo htmlspecialchars($item['name'] ?? 'Unknown Item'); ?>">
                         </div>
                         <div class="product-details">
-                            <h3 class="product-title"><?php echo htmlspecialchars($item['name']); ?></h3>
+                            <h3 class="product-title"><?php echo htmlspecialchars($item['name'] ?? 'Unknown Item'); ?></h3>
                             <p class="quantity">Qty: <?php echo $item['quantity']; ?></p>
                             <p class="price">Rp <?php echo number_format($item['unit_price'], 0, ',', '.'); ?></p>
-                            <?php if ($item['notes']): ?>
+                            <?php if (!empty($item['notes'])): ?>
                                 <p class="notes">Notes: <?php echo htmlspecialchars($item['notes']); ?></p>
                             <?php endif; ?>
                         </div>
