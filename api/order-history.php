@@ -6,9 +6,26 @@ require_once __DIR__ . '/includes/auth_check.php';
 // Ensure user is logged in
 requireAuth();
 
+// Debug: Log session info
+error_log("DEBUG: Order history accessed by user_id: " . ($_SESSION['user_id'] ?? 'NOT_SET'));
+error_log("DEBUG: Session data: " . print_r($_SESSION, true));
+
 function getOrderHistory($userId) {
     try {
         $db = Database::getInstance();
+        
+        // Debug: Check if user has any orders
+        $checkStmt = $db->prepare("SELECT COUNT(*) as count FROM orders WHERE user_id = ?");
+        $checkStmt->execute([$userId]);
+        $orderCount = $checkStmt->fetch(PDO::FETCH_ASSOC);
+        error_log("DEBUG: User $userId has {$orderCount['count']} orders");
+        
+        // Debug: Check if menu_items table has data
+        $menuStmt = $db->prepare("SELECT COUNT(*) as count FROM menu_items");
+        $menuStmt->execute();
+        $menuCount = $menuStmt->fetch(PDO::FETCH_ASSOC);
+        error_log("DEBUG: Menu items table has {$menuCount['count']} items");
+        
         $stmt = $db->prepare("
             SELECT 
                 o.order_id,
@@ -25,13 +42,16 @@ function getOrderHistory($userId) {
                 mi.image_url
             FROM orders o
             JOIN order_items oi ON o.order_id = oi.order_id
-            JOIN menu_items mi ON oi.item_id = mi.item_id
+            LEFT JOIN menu_items mi ON oi.item_id = mi.item_id
             WHERE o.user_id = ?
             ORDER BY o.created_at DESC
         ");
         
         $stmt->execute([$userId]);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        error_log("DEBUG: Query returned " . count($results) . " results for user $userId");
+        
+        return $results;
     } catch (Exception $e) {
         error_log("Error fetching order history: " . $e->getMessage());
         return [];
