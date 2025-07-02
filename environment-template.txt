@@ -1,0 +1,25 @@
+# Environment Variables Template for Vercel Deployment
+# Copy these to your Vercel project environment variables with actual values
+
+# Database Configuration (Replace with your Aiven.io MySQL credentials)
+DB_HOST=your_aiven_mysql_host
+DB_NAME=your_database_name
+DB_USER=your_database_user
+DB_PASS=your_aiven_password
+DB_PORT=your_database_port
+DB_SSL_MODE=REQUIRED
+
+# Site Configuration (Update with your actual Vercel app URL)
+SITE_URL=https://your-app.vercel.app
+
+# Google OAuth (Replace with your Google Client ID)
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_MAPS_API_KEY=your_google_maps_api_key
+
+# Mailgun Configuration (Replace with your Mailgun credentials)
+MAILGUN_API_KEY=your_mailgun_api_key
+MAILGUN_DOMAIN=your_mailgun_domain
+SENDER_EMAIL=your_sender_email
+
+# Vercel Environment
+VERCEL=1 

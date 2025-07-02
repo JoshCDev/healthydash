@@ -1,0 +1,50 @@
+# Dependencies
+/vendor/
+node_modules/
+
+# Environment files
+.env
+.env.local
+.env.production
+
+# Log files
+*.log
+logs/
+
+# Cache files
+cache/
+tmp/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temporary files
+temp/
+*.tmp
+
+# Archive files (keep healthybites.rar as it might be needed)
+# *.rar
+*.zip
+
+# Test files (already cleaned up)
+test-*.php
+debug-*.php
+*-test.php
+
+# Local development files
+config-local.php
+
+# Credentials file (contains actual secrets)
+ACTUAL-CREDENTIALS.md 

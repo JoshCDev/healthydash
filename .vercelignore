@@ -1,0 +1,9 @@
+vendor/
+database/
+healthybites.rar
+design_sample.txt
+.git/
+.gitignore
+*.log
+temp/
+cache/ 
