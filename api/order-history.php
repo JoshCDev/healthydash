@@ -1,7 +1,7 @@
 <?php
-session_start();
-require_once '../includes/config.php';
-require_once '../includes/auth_check.php';
+// Session already started by api/index.php
+require_once __DIR__ . '/includes/config.php';
+require_once __DIR__ . '/includes/auth_check.php';
 
 // Ensure user is logged in
 requireAuth();

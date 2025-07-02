@@ -1,7 +1,7 @@
 <?php
-session_start();
-require_once '../includes/config.php';
-require_once '../includes/PasswordReset.php';
+// Session already started by api/index.php
+require_once __DIR__ . '/includes/config.php';
+require_once __DIR__ . '/includes/PasswordReset.php';
 
 // If user is already logged in, redirect to dashboard
 if (isset($_SESSION['user_id'])) {

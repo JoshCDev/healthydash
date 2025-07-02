@@ -1,5 +1,8 @@
 <?php
-session_start();
+// Session already started by api/index.php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 // Clear session
 session_unset();
@@ -12,5 +15,5 @@ if (isset($_COOKIE['remember_token']) || isset($_COOKIE['user_id'])) {
 }
 
 // Redirect to login page
-header('Location: ../pages/login.php');
+header('Location: /login.php');
 exit;
