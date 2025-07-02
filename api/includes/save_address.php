@@ -58,7 +58,7 @@ try {
     try {
         // Check for duplicate address
         $check_stmt = $db->prepare("
-            SELECT COUNT(*) AS count, address_id
+            SELECT COUNT(*) AS count
             FROM user_addresses
             WHERE user_id = ? 
             AND (
