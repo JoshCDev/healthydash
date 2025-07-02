@@ -86,6 +86,14 @@ switch ($route) {
         require_once __DIR__ . '/test-email-config.php';
         break;
         
+    case '/check-database.php':
+        require_once __DIR__ . '/check-database.php';
+        break;
+        
+    case '/admin-tools.php':
+        require_once __DIR__ . '/admin-tools.php';
+        break;
+        
     // Handle includes routes
     case '/includes/logout.php':
         require_once __DIR__ . '/includes/logout.php';
