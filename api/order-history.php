@@ -6,25 +6,9 @@ require_once __DIR__ . '/includes/auth_check.php';
 // Ensure user is logged in
 requireAuth();
 
-// Debug: Log session info
-error_log("DEBUG: Order history accessed by user_id: " . ($_SESSION['user_id'] ?? 'NOT_SET'));
-error_log("DEBUG: Session data: " . print_r($_SESSION, true));
-
 function getOrderHistory($userId) {
     try {
         $db = Database::getInstance();
-        
-        // Debug: Check if user has any orders
-        $checkStmt = $db->prepare("SELECT COUNT(*) as count FROM orders WHERE user_id = ?");
-        $checkStmt->execute([$userId]);
-        $orderCount = $checkStmt->fetch(PDO::FETCH_ASSOC);
-        error_log("DEBUG: User $userId has {$orderCount['count']} orders");
-        
-        // Debug: Check if menu_items table has data
-        $menuStmt = $db->prepare("SELECT COUNT(*) as count FROM menu_items");
-        $menuStmt->execute();
-        $menuCount = $menuStmt->fetch(PDO::FETCH_ASSOC);
-        error_log("DEBUG: Menu items table has {$menuCount['count']} items");
         
         $stmt = $db->prepare("
             SELECT 
@@ -48,10 +32,7 @@ function getOrderHistory($userId) {
         ");
         
         $stmt->execute([$userId]);
-        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        error_log("DEBUG: Query returned " . count($results) . " results for user $userId");
-        
-        return $results;
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     } catch (Exception $e) {
         error_log("Error fetching order history: " . $e->getMessage());
         return [];
@@ -402,7 +383,7 @@ h3 {
                 <?php foreach ($order['items'] as $item): ?>
                     <div class="product">
                         <div class="product-image">
-                            <img src="<?php echo htmlspecialchars($item['image_url'] ?? '/assets/images/placeholder.png'); ?>" alt="<?php echo htmlspecialchars($item['name'] ?? 'Unknown Item'); ?>">
+                            <img src="<?php echo htmlspecialchars($item['image_url'] ?? 'data:image/svg+xml;base64,' . base64_encode('<svg width="80" height="80" xmlns="http://www.w3.org/2000/svg"><rect width="100%" height="100%" fill="#f3f4f6"/><text x="50%" y="50%" font-family="Arial, sans-serif" font-size="10" fill="#9ca3af" text-anchor="middle" dy=".3em">No Image</text></svg>')); ?>" alt="<?php echo htmlspecialchars($item['name'] ?? 'Unknown Item'); ?>">
                         </div>
                         <div class="product-details">
                             <h3 class="product-title"><?php echo htmlspecialchars($item['name'] ?? 'Unknown Item'); ?></h3>
