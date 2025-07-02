@@ -1,6 +1,6 @@
 <?php
-require_once '../includes/config.php';
-require_once '../includes/auth_check.php';
+require_once __DIR__ . '/includes/config.php';
+require_once __DIR__ . '/includes/auth_check.php';
 requireAuth();
 ?>
 <!DOCTYPE html>
@@ -388,7 +388,7 @@ border: 1px solid rgba(255, 255, 255, 0.22);
     function handleLogout() {
         confirmButton.textContent = 'Signing out...';
         confirmButton.disabled = true;
-        window.location.href = '../includes/logout.php';
+        window.location.href = '/includes/logout.php';
     }
 
     // Show modal when logout button is clicked

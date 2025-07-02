@@ -1,7 +1,8 @@
 <?php
-session_start();
 require_once __DIR__ . '/includes/config.php';
 
+// Session already started by api/index.php
+// Only start session if not already started (for direct access)
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
