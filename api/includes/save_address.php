@@ -1,6 +1,9 @@
 <?php
-session_start();
-require_once 'config.php';
+// Session already started by api/index.php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+require_once __DIR__ . '/config.php';
 header('Content-Type: application/json');
 
 try {

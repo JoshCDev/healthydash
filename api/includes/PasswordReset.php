@@ -151,34 +151,49 @@ class PasswordReset {
         try {
             $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http';
             $host = $_SERVER['HTTP_HOST'];
-// Should be
-$reset_url = sprintf(
-    '%s://%s/healthydash/pages/reset-password.php?token=%s',
-    $protocol,
-    $host,
-    urlencode($token)
-);
+            
+            // Generate proper reset URL for Vercel deployment
+            $reset_url = sprintf(
+                '%s://%s/reset-password.php?token=%s',
+                $protocol,
+                $host,
+                urlencode($token)
+            );
 
             $html_content = $this->getEmailTemplate($reset_url, $username);
 
-            $ch = curl_init();
-            curl_setopt_array($ch, [
-                CURLOPT_URL => "https://api.mailgun.net/v3/{$this->mailgun_domain}/messages",
-                CURLOPT_USERPWD => "api:{$this->mailgun_api_key}",
-                CURLOPT_POST => true,
-                CURLOPT_POSTFIELDS => [
-                    'from' => "HealthyDash <{$this->sender_email}>",
-                    'to' => $email,
-                    'subject' => 'Reset Your HealthyDash Password',
-                    'html' => $html_content,
-                ],
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_TIMEOUT => 10
+            // Use file_get_contents instead of curl for Vercel compatibility
+            $postData = http_build_query([
+                'from' => "HealthyDash <{$this->sender_email}>",
+                'to' => $email,
+                'subject' => 'Reset Your HealthyDash Password',
+                'html' => $html_content,
             ]);
 
-            $response = curl_exec($ch);
-            $http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-            curl_close($ch);
+            $context = stream_context_create([
+                'http' => [
+                    'method' => 'POST',
+                    'header' => [
+                        'Authorization: Basic ' . base64_encode("api:{$this->mailgun_api_key}"),
+                        'Content-Type: application/x-www-form-urlencoded',
+                        'Content-Length: ' . strlen($postData)
+                    ],
+                    'content' => $postData,
+                    'timeout' => 10,
+                ]
+            ]);
+
+            $response = @file_get_contents(
+                "https://api.mailgun.net/v3/{$this->mailgun_domain}/messages",
+                false,
+                $context
+            );
+            
+            $http_status = 200; // Default to success if no error
+            if ($response === false) {
+                $http_status = 500;
+                error_log("Failed to send email via Mailgun");
+            }
 
             error_log("Email send status: " . $http_status);
             error_log("Email response: " . $response);

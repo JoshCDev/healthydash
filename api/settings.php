@@ -388,7 +388,7 @@ border: 1px solid rgba(255, 255, 255, 0.22);
     function handleLogout() {
         confirmButton.textContent = 'Signing out...';
         confirmButton.disabled = true;
-        window.location.href = '/includes/logout.php';
+        window.location.href = '/logout.php';
     }
 
     // Show modal when logout button is clicked

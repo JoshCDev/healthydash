@@ -66,6 +66,10 @@ switch ($route) {
         require_once __DIR__ . '/success.php';
         break;
         
+    case '/logout.php':
+        require_once __DIR__ . '/logout.php';
+        break;
+        
     // Handle includes routes
     case '/includes/logout.php':
         require_once __DIR__ . '/includes/logout.php';
