@@ -82,6 +82,10 @@ switch ($route) {
         require_once __DIR__ . '/place-order.php';
         break;
         
+    case '/test-email-config.php':
+        require_once __DIR__ . '/test-email-config.php';
+        break;
+        
     // Handle includes routes
     case '/includes/logout.php':
         require_once __DIR__ . '/includes/logout.php';

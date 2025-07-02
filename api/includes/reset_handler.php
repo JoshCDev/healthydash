@@ -109,12 +109,12 @@ $reset_url = sprintf(
         try {
             // Send via Mailgun API using file_get_contents (Vercel compatible)
             $postData = http_build_query([
-                'from' => "HealthyDash Password Reset <{$this->sender_email}>",
-                'to' => $email,
-                'subject' => 'Reset Your HealthyDash Password',
-                'html' => $html_content,
+                    'from' => "HealthyDash Password Reset <{$this->sender_email}>",
+                    'to' => $email,
+                    'subject' => 'Reset Your HealthyDash Password',
+                    'html' => $html_content,
             ]);
-            
+
             $context = stream_context_create([
                 'http' => [
                     'method' => 'POST',

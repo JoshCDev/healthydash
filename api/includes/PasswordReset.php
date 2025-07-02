@@ -162,6 +162,11 @@ class PasswordReset {
 
             $html_content = $this->getEmailTemplate($reset_url, $username);
 
+            // Log configuration for debugging
+            error_log("Mailgun configuration - Domain: " . $this->mailgun_domain);
+            error_log("Sender email: " . $this->sender_email);
+            error_log("Sending to: " . $email);
+            
             // Use file_get_contents instead of curl for Vercel compatibility
             $postData = http_build_query([
                 'from' => "HealthyDash <{$this->sender_email}>",
@@ -180,6 +185,7 @@ class PasswordReset {
                     ],
                     'content' => $postData,
                     'timeout' => 10,
+                    'ignore_errors' => true // This allows us to get response even on HTTP error
                 ]
             ]);
 
@@ -189,14 +195,37 @@ class PasswordReset {
                 $context
             );
             
-            $http_status = 200; // Default to success if no error
+            // Get the actual HTTP response headers
+            $http_response_header_string = isset($http_response_header) ? implode("\n", $http_response_header) : '';
+            
+            // Extract HTTP status code
+            $http_status = 500; // Default to error
+            if (preg_match('/HTTP\/\d\.\d\s+(\d+)/', $http_response_header_string, $matches)) {
+                $http_status = intval($matches[1]);
+            }
+            
             if ($response === false) {
-                $http_status = 500;
-                error_log("Failed to send email via Mailgun");
+                error_log("Failed to send email via Mailgun - No response received");
+                error_log("Possible causes: Invalid API key, network error, or incorrect domain");
+                return false;
             }
 
             error_log("Email send status: " . $http_status);
             error_log("Email response: " . $response);
+            
+            // Decode response to check for specific errors
+            $responseData = json_decode($response, true);
+            if ($http_status !== 200) {
+                $errorMessage = isset($responseData['message']) ? $responseData['message'] : 'Unknown error';
+                error_log("Mailgun error: " . $errorMessage);
+                
+                // Check for specific errors
+                if (strpos($errorMessage, 'Forbidden') !== false) {
+                    error_log("API Key authentication failed. Please check MAILGUN_API_KEY environment variable.");
+                } elseif (strpos($errorMessage, 'not found') !== false) {
+                    error_log("Domain not found. Please check MAILGUN_DOMAIN configuration.");
+                }
+            }
 
             return $http_status === 200;
         } catch (Exception $e) {
