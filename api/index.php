@@ -70,6 +70,18 @@ switch ($route) {
         require_once __DIR__ . '/logout.php';
         break;
         
+    case '/save-address.php':
+        require_once __DIR__ . '/save-address.php';
+        break;
+        
+    case '/get-addresses.php':
+        require_once __DIR__ . '/get-addresses.php';
+        break;
+        
+    case '/place-order.php':
+        require_once __DIR__ . '/place-order.php';
+        break;
+        
     // Handle includes routes
     case '/includes/logout.php':
         require_once __DIR__ . '/includes/logout.php';

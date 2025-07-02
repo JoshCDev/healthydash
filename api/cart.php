@@ -490,7 +490,7 @@ function updateTotalPrice() {
 
 // Address Management
 function loadAddresses() {
-    fetch('../includes/get_addresses.php')
+    fetch('/get-addresses.php')
         .then(response => response.json())
         .then(addresses => {
             const select = document.getElementById('address-select');
@@ -607,7 +607,7 @@ function confirmOrder() {
     confirmBtn.textContent = 'Processing...';
     confirmBtn.disabled = true;
     
-    fetch('../includes/place_order.php', {
+    fetch('/place-order.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

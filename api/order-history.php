@@ -256,15 +256,53 @@ h3 {
 }
 
 .empty-cart-message {
-    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 3rem 2rem;
     gap: 1.5rem;
+    min-height: calc(100vh - 200px);
 }
 
 .empty-image {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    opacity: 0.8;
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    opacity: 0.6;
+    filter: grayscale(50%);
+}
+
+.empty-text {
+    color: #6b7280;
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.empty-subtext {
+    color: #9ca3af;
+    font-size: 14px;
+}
+
+.order-now-btn {
+    margin-top: 1rem;
+    padding: 12px 24px;
+    background-color: #567733;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.order-now-btn:hover {
+    background-color: #456028;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(86, 119, 51, 0.2);
 }
 
 .order-header {
@@ -324,8 +362,10 @@ h3 {
     </header>
 
     <div class="empty-cart-message" style="display: <?php echo empty($groupedOrders) ? 'flex' : 'none'; ?>">
-                    <img src="/assets/images/empty-box.png" alt="Empty history" class="empty-image">
-        <p>You haven't purchased something</p>
+        <img src="/assets/images/empty-box.png" alt="Empty history" class="empty-image">
+        <p class="empty-text">No orders yet</p>
+        <p class="empty-subtext">Looks like you haven't made any orders.<br>Start exploring our delicious menu!</p>
+        <a href="menu.php" class="order-now-btn">Order Now</a>
     </div>
 
     <main class="main-content" style="display: <?php echo !empty($groupedOrders) ? 'block' : 'none'; ?>">
@@ -373,6 +413,5 @@ h3 {
             }
         });
     </script>
-</body>
 </body>
 </html>

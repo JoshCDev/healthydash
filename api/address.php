@@ -978,7 +978,7 @@ requireAuth();
         is_default: isDefault
     };
 
-    fetch('/includes/save_address.php', {
+    fetch('/save-address.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
