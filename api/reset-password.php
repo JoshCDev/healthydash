@@ -1,6 +1,5 @@
 <?php
-session_start();
-require_once '../includes/config.php';
+require_once __DIR__ . '/includes/config.php';
 
 // If user is logged in, redirect to dashboard
 if (isset($_SESSION['user_id'])) {

@@ -19,6 +19,9 @@ define('MAILGUN_API_KEY', getenv('MAILGUN_API_KEY') ?: 'your_mailgun_api_key_her
 define('MAILGUN_DOMAIN', getenv('MAILGUN_DOMAIN') ?: 'otp.jflyc.com');
 define('SENDER_EMAIL', getenv('SENDER_EMAIL') ?: 'noreply@yourdomain.com');
 
+// Vercel environment detection
+define('VERCEL', isset($_ENV['VERCEL']) || getenv('VERCEL') !== false);
+
 // Database connection class
 class Database {
     private static $instance = null;
@@ -70,14 +73,4 @@ function handleError($message, $code = 500) {
     exit;
 }
 
-// Session configuration (only for web requests, not CLI)
-if (php_sapi_name() !== 'cli' && !headers_sent()) {
-    if (session_status() === PHP_SESSION_NONE) {
-        ini_set('session.cookie_httponly', 1);
-        ini_set('session.cookie_secure', isVercelEnvironment() ? 1 : 0);
-        ini_set('session.cookie_samesite', 'Lax');
-        ini_set('session.gc_maxlifetime', 86400);
-        
-        session_start();
-    }
-}
+// Session configuration now handled in index.php

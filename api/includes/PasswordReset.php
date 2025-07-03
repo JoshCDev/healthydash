@@ -235,6 +235,7 @@ class PasswordReset {
     }
 
     private function getEmailTemplate($reset_url, $username) {
+        $site_url = SITE_URL;
         return '
             <!DOCTYPE html>
 <html>
@@ -244,7 +245,7 @@ class PasswordReset {
 </head>
 <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333333; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f5f5f5;">
     <div style="text-align: center; margin-bottom: 15px;">
-        <img src="../assets/images/healthydashlogo.png" alt="HealthyDash Logo" style="max-width: 200px;">
+        <img src="' . $site_url . '/assets/images/healthydashlogo.png" alt="HealthyDash Logo" style="max-width: 200px;">
     </div>
     <div style="background-color: #ffffff; padding: 30px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); border: 1px solid #e0e0e0;">
         <h2 style="color: #567733; margin-top: 0; margin-bottom: 20px; text-align: center; font-size: 24px;">Reset Your Password</h2>

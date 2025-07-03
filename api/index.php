@@ -1,8 +1,27 @@
 <?php
-// Main entry point for Vercel deployment
-// This file handles routing for the entire application
+// Error logging
+error_reporting(E_ALL);
+ini_set('display_errors', 0);
+ini_set('log_errors', 1);
 
-// Start session if not already started
+// Include config first
+require_once __DIR__ . '/includes/config.php';
+require_once __DIR__ . '/includes/session_handler.php';
+
+// Configure session for serverless environment
+ini_set('session.cookie_lifetime', 0);
+ini_set('session.cookie_httponly', 1);
+ini_set('session.cookie_secure', 1);
+ini_set('session.cookie_samesite', 'Lax');
+ini_set('session.gc_maxlifetime', 86400); // 24 hours
+
+// Use database session handler for Vercel
+if (defined('VERCEL') && VERCEL) {
+    $handler = new DatabaseSessionHandler();
+    session_set_save_handler($handler, true);
+}
+
+// Start session
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
