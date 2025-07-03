@@ -74,12 +74,16 @@ if (!isset($_SESSION['user_id'])) {
             <h2 class="text-xl font-semibold text-gray-800 mb-4">📧 Email Configuration Checker</h2>
             <p class="text-gray-600 mb-4">Test konfigurasi Mailgun untuk reset password</p>
             
-            <div class="space-x-2">
+            <div class="space-x-2 space-y-2">
                 <button onclick="checkEmail()" class="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600">
                     Check Email Config
                 </button>
                 <button onclick="debugEnv()" class="bg-purple-500 text-white px-6 py-2 rounded hover:bg-purple-600">
                     Debug Environment
+                </button>
+                <br>
+                <button onclick="testMailgun()" class="bg-orange-500 text-white px-6 py-2 rounded hover:bg-orange-600">
+                    Test Mailgun Domains
                 </button>
             </div>
             
@@ -125,6 +129,19 @@ if (!isset($_SESSION['user_id'])) {
                         <li>• Environment variables salah</li>
                         <li>• DNS tidak ter-setup</li>
                     </ul>
+                </div>
+                
+                <div class="border rounded-lg p-4">
+                    <h3 class="font-medium text-gray-800 mb-2">🔐 Signup Issues</h3>
+                    <p class="text-sm text-gray-600 mb-3">403 Forbidden untuk check_availability.php</p>
+                    <ul class="text-sm text-gray-600 space-y-1">
+                        <li>• Missing public endpoint</li>
+                        <li>• Route tidak terdaftar di index.php</li>
+                        <li>• Permissions issue</li>
+                    </ul>
+                    <div class="mt-2 text-xs text-green-600">
+                        <strong>Fixed:</strong> Endpoint public sudah dibuat
+                    </div>
                 </div>
             </div>
             
@@ -222,6 +239,39 @@ if (!isset($_SESSION['user_id'])) {
                     result.classList.remove('border-red-300', 'bg-red-50');
                 } else {
                     result.classList.add('border-red-300', 'bg-red-50');
+                    result.classList.remove('border-green-300', 'bg-green-50');
+                }
+                
+            } catch (error) {
+                content.textContent = 'Error: ' + error.message;
+                result.classList.remove('hidden');
+                result.classList.add('border-red-300', 'bg-red-50');
+            } finally {
+                loading.classList.remove('show');
+            }
+        }
+        
+        async function testMailgun() {
+            const loading = document.getElementById('email-loading');
+            const result = document.getElementById('email-result');
+            const content = document.getElementById('email-result-content');
+            
+            loading.classList.add('show');
+            result.classList.add('hidden');
+            
+            try {
+                const response = await fetch('/test-mailgun-simple.php');
+                const data = await response.json();
+                
+                content.textContent = JSON.stringify(data, null, 2);
+                result.classList.remove('hidden');
+                
+                // Show success/error styling based on working domains
+                if (data.recommendation && data.recommendation.action === 'Use working domain') {
+                    result.classList.add('border-green-300', 'bg-green-50');
+                    result.classList.remove('border-red-300', 'bg-red-50');
+                } else {
+                    result.classList.add('border-orange-300', 'bg-orange-50');
                     result.classList.remove('border-green-300', 'bg-green-50');
                 }
                 

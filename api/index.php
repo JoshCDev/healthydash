@@ -98,6 +98,14 @@ switch ($route) {
         require_once __DIR__ . '/debug-env.php';
         break;
         
+    case '/check-availability.php':
+        require_once __DIR__ . '/check-availability.php';
+        break;
+        
+    case '/test-mailgun-simple.php':
+        require_once __DIR__ . '/test-mailgun-simple.php';
+        break;
+        
     // Handle includes routes
     case '/includes/logout.php':
         require_once __DIR__ . '/includes/logout.php';

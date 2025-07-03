@@ -76,7 +76,7 @@ try {
         ];
         
         $insertStmt = $db->prepare("
-            INSERT INTO menu_items (name, description, price, image_url, is_available, created_at, updated_at) 
+            INSERT IGNORE INTO menu_items (name, description, price, image_url, is_available, created_at, updated_at) 
             VALUES (?, ?, ?, ?, 1, NOW(), NOW())
         ");
         
@@ -94,7 +94,7 @@ try {
     // If there are missing menu items for existing orders, create them
     if (!empty($missingItems)) {
         $insertStmt = $db->prepare("
-            INSERT INTO menu_items (item_id, name, description, price, image_url, is_available, created_at, updated_at) 
+            INSERT IGNORE INTO menu_items (item_id, name, description, price, image_url, is_available, created_at, updated_at) 
             VALUES (?, ?, ?, ?, ?, 1, NOW(), NOW())
         ");
         
