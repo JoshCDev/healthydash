@@ -2,7 +2,8 @@
 SQLyog Ultimate v10.00 Beta1
 MySQL - 5.5.5-10.4.32-MariaDB : Database - healthydash
 *********************************************************************
-*/
+*/
+
 
 /*!40101 SET NAMES utf8 */;
 
@@ -203,7 +204,7 @@ DROP TABLE IF EXISTS `user_addresses`;
 CREATE TABLE `user_addresses` (
   `address_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
-  `address_type` enum('Home','Office','Other') NOT NULL DEFAULT 'Home',
+  `address_type` VARCHAR(50) NOT NULL DEFAULT 'Home',
   `address_line` text NOT NULL,
   `latitude` decimal(10,8) NOT NULL,
   `longitude` decimal(11,8) NOT NULL,
@@ -212,7 +213,8 @@ CREATE TABLE `user_addresses` (
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`address_id`),
   KEY `user_id` (`user_id`),
-  CONSTRAINT `user_addresses_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE
+  CONSTRAINT `user_addresses_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE,
+  CONSTRAINT `chk_address_type` CHECK (address_type IN ('Home', 'Office', 'Other') OR LENGTH(address_type) <= 50)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `user_addresses` */

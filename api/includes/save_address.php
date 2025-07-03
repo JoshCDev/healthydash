@@ -40,8 +40,8 @@ try {
     }
 
     // If not a predefined type, validate custom type length
-    if (!in_array($address_type, ['Home', 'Office']) && strlen($address_type) > 20) {
-        throw new Exception('Custom address type is too long (maximum 20 characters)');
+    if (!in_array($address_type, ['Home', 'Office', 'Other']) && strlen($address_type) > 50) {
+        throw new Exception('Custom address type is too long (maximum 50 characters)');
     }
 
     // Sanitize the address type

@@ -762,7 +762,7 @@ requireAuth();
         <input type="text" 
                id="customType" 
                placeholder="Enter custom category"
-               maxlength="20">
+               maxlength="50">
     </div>
 
     <div class="default-address">
