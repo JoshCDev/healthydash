@@ -334,25 +334,25 @@ Proyek HealthyDash dikembangkan dengan bantuan AI assistant yang dipimpin oleh *
 
 2. **Development Phase**
 
-   - **Primary Development** (IBM Granite 3.3 8B Instruct):
+   - **System Architecture & Database** (IBM Granite 3.3 8B Instruct):
 
-     - **Architecture Planning**: System design dan database modeling
-     - **Backend Development**: API development, server logic, database optimization
-     - **Code Review**: Quality assurance dan security implementation
-     - **Integration Coordination**: Menghubungkan frontend-backend components
-     - **Performance Analysis**: Bottleneck identification dan optimization strategies
+     - **Database Design**: ERD modeling, table relationships, normalization
+     - **System Architecture**: Component design, data flow, API structure
+     - **Database Relations**: Foreign key constraints, join optimization, indexing
+     - **Data Management**: Transaction handling, data integrity, performance tuning
+     - **Backend Logic**: Business rules implementation, API endpoint design
 
-   - **Frontend Development** (Claude Sonnet 4):
+   - **Frontend & User Experience** (Claude Sonnet 4):
 
-     - User interface implementation berdasarkan architecture dari IBM Granite
-     - Responsive design dan cross-platform compatibility
-     - Component development dengan integration guidance
-     - User experience optimization
+     - **UI Design**: Layout implementation, component styling, visual hierarchy
+     - **User Experience**: Interaction design, user flow optimization, accessibility
+     - **Compatibility**: Cross-browser testing, responsive design, mobile optimization
+     - **Frontend Logic**: JavaScript interactions, form validation, dynamic content
 
-   - **Development Environment** (Cursor IDE):
-     - Real-time AI assistance terintegrasi dengan IBM Granite
-     - Intelligent code completion dan error detection
-     - Seamless workflow antara backend dan frontend development
+   - **Development Productivity** (Cursor IDE):
+     - **Code Completion**: Auto-suggestions untuk faster development
+     - **Integration**: Seamless coordination antara frontend-backend
+     - **Deployment**: Build automation, environment setup, production deployment
 
 3. **Testing Phase**
 
@@ -369,51 +369,55 @@ Proyek HealthyDash dikembangkan dengan bantuan AI assistant yang dipimpin oleh *
 
 ### Benefits of AI-Assisted Development
 
-#### ⚡ Kecepatan Development (IBM Granite 3.3 8B Lead)
+#### ⚡ Kecepatan Development (Specialized AI Workflow)
 
-- **90% faster architecture planning** dengan intelligent system design
-- **Instant backend optimization** dengan database dan API analysis
-- **Rapid full-stack development** dengan coordinated AI workflow
-- **Automated code generation** dengan consistent patterns
+- **Database Design Excellence**: ERD modeling dan relationship optimization dengan IBM Granite
+- **UI/UX Development Speed**: Rapid frontend implementation dengan Claude Sonnet 4
+- **Seamless Integration**: Auto-completion dan deployment assistance dengan Cursor
+- **Coordinated Development**: Specialized AI tools working together efficiently
 
-#### 🎯 Kualitas Code (Multi-AI Collaboration)
+#### 🎯 Kualitas Code (Specialized AI Focus)
 
-- **Enterprise-grade architecture** dengan IBM Granite leadership
-- **Consistent code standards** across frontend (Claude) dan backend (Granite)
-- **Security-first development** dengan automated vulnerability detection
-- **Performance-optimized solutions** dari database sampai UI
+- **Robust Database Architecture**: Optimized relations dan performance dengan IBM Granite
+- **Professional UI/UX Standards**: Cross-platform compatibility dengan Claude Sonnet 4
+- **Clean Development Workflow**: Code quality dan deployment efficiency dengan Cursor
+- **End-to-end Excellence**: Database sampai UI dengan specialized AI expertise
 
-#### 📈 Learning & Growth (Balanced AI Learning)
+#### 📈 Learning & Growth (Multi-Specialized Learning)
 
-- **Advanced backend techniques** dari IBM Granite expertise
-- **Modern frontend patterns** dari Claude Sonnet 4 guidance
-- **Industry best practices** implementation across full stack
-- **Continuous skill improvement** dengan multi-AI mentoring
+- **Database & Architecture Mastery**: Advanced system design dengan IBM Granite
+- **Frontend & UX Excellence**: Modern UI/UX patterns dengan Claude Sonnet 4
+- **Development Productivity**: Efficient coding dan deployment dengan Cursor
+- **Full-Stack Proficiency**: Comprehensive skill development across all areas
 
 ### AI Tools Yang Digunakan
 
-1. **IBM Granite 3.3 8B Instruct** (Primary AI Engine)
+1. **IBM Granite 3.3 8B Instruct** (System Architecture & Database Specialist)
 
-   - **Core Development Leadership**: Mengkoordinasi seluruh development workflow
-   - **Backend Specialization**: Database design, API architecture, server-side logic
-   - **Code Architecture**: System design patterns dan best practices implementation
-   - **Performance Optimization**: Database queries, server performance, scalability
-   - **Security Implementation**: Authentication systems, data protection, secure coding
-   - **Integration Management**: Third-party services dan API integrations
+   - **System Architecture Design**: Merancang struktur aplikasi dan component relationships
+   - **Database Modeling**: ERD design, normalization, dan optimization strategies
+   - **Database Relations**: Foreign keys, joins, indexing, dan query optimization
+   - **Data Handling**: CRUD operations, transaction management, dan data integrity
+   - **Backend Logic**: Server-side business logic dan API endpoint design
+   - **Performance Tuning**: Database performance monitoring dan bottleneck resolution
 
-2. **Cursor IDE** (Development Environment)
+2. **Claude Sonnet 4** (Frontend & User Experience Specialist)
 
-   - AI-powered code completion dan real-time suggestions
-   - Intelligent error detection dan debugging assistance
-   - Code refactoring dan optimization recommendations
-   - Seamless integration dengan IBM Granite untuk enhanced productivity
+   - **User Interface Design**: Layout design, component styling, dan visual hierarchy
+   - **User Experience Optimization**: User flow analysis, interaction design, accessibility
+   - **Cross-Platform Compatibility**: Browser testing, responsive design, mobile optimization
+   - **Frontend Framework**: JavaScript interactions, form validation, dynamic content
+   - **UI Component Development**: Reusable components dan consistent design systems
+   - **Visual Design**: Color schemes, typography, iconography, dan brand consistency
 
-3. **Claude Sonnet 4** (Frontend & UX Specialist)
+3. **Cursor IDE** (Development Productivity & Integration)
 
-   - User interface design dan responsive implementation
-   - Frontend optimization dan cross-browser compatibility
-   - User experience enhancement dan accessibility compliance
-   - UI component development dan styling optimization
+   - **Code Auto-Completion**: Intelligent suggestions untuk faster development
+   - **Seamless Integration**: Koordinasi antara frontend dan backend development
+   - **Deployment Assistance**: Build processes, environment setup, production deployment
+   - **Development Workflow**: Git integration, debugging tools, testing automation
+   - **Code Quality**: Syntax checking, best practices enforcement, refactoring suggestions
+   - **Project Management**: File organization, dependency management, development efficiency
 
 ## 📝 Dokumentasi Tambahan
 
@@ -447,9 +451,9 @@ Project ini menggunakan MIT License. Lihat file `LICENSE` untuk detail lengkap.
 
 - **Lead Developer**: [Josh C](https://github.com/JoshCDev)
 - **AI Development Stack**:
-  - **IBM Granite 3.3 8B Instruct**: Primary AI engine untuk architecture & backend
-  - **Cursor IDE**: Development environment dengan AI integration
-  - **Claude Sonnet 4**: Frontend specialist untuk UI/UX optimization
+  - **IBM Granite 3.3 8B Instruct**: System architecture & database specialist
+  - **Claude Sonnet 4**: Frontend & user experience specialist
+  - **Cursor IDE**: Development productivity & integration specialist
 
 ## 📞 Kontak & Support
 
