@@ -8,8 +8,10 @@ require_once 'config.php';
 function checkAuth() {
     // Regular session check
     if (isset($_SESSION['user_id'])) {
-        // Check if session is not too old (24 minutes)
-        if (isset($_SESSION['auth_time']) && (time() - $_SESSION['auth_time'] < 1440)) {
+        // Check if session is not too old (24 hours)
+        if (isset($_SESSION['auth_time']) && (time() - $_SESSION['auth_time'] < 86400)) {
+            // Update auth_time on activity
+            $_SESSION['auth_time'] = time();
             return true;
         }
         // Session expired, clear it

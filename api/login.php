@@ -561,7 +561,7 @@ if (isset($_POST['credential'])) {
             formData.append('type', 'user_check');
             formData.append('value', identifier);
 
-            const response = await fetch('../includes/check_availability.php', {
+            const response = await fetch('/check-availability.php', {
                 method: 'POST',
                 body: formData
             });

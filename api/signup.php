@@ -285,6 +285,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 
                 if ($user) {
                     $_SESSION['user_id'] = $user['user_id'];
+                    $_SESSION['auth_time'] = time();
                     header('Location: menu.php');
                     exit();
                 } else {
@@ -1107,7 +1108,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     formData.append('type', 'username');
     formData.append('value', username);
 
-    fetch('/includes/check_availability.php', {
+    fetch('/check-availability.php', {
         method: 'POST',
         body: formData
     })
@@ -1137,7 +1138,7 @@ function checkEmailAvailability(email) {
     formData.append('type', 'email');
     formData.append('value', email);
 
-    fetch('/includes/check_availability.php', {
+    fetch('/check-availability.php', {
         method: 'POST',
         body: formData
     })

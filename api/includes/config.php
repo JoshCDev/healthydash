@@ -76,7 +76,7 @@ if (php_sapi_name() !== 'cli' && !headers_sent()) {
         ini_set('session.cookie_httponly', 1);
         ini_set('session.cookie_secure', isVercelEnvironment() ? 1 : 0);
         ini_set('session.cookie_samesite', 'Lax');
-        ini_set('session.gc_maxlifetime', 1440);
+        ini_set('session.gc_maxlifetime', 86400);
         
         session_start();
     }
