@@ -74,9 +74,14 @@ if (!isset($_SESSION['user_id'])) {
             <h2 class="text-xl font-semibold text-gray-800 mb-4">📧 Email Configuration Checker</h2>
             <p class="text-gray-600 mb-4">Test konfigurasi Mailgun untuk reset password</p>
             
-            <button onclick="checkEmail()" class="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600">
-                Check Email Config
-            </button>
+            <div class="space-x-2">
+                <button onclick="checkEmail()" class="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600">
+                    Check Email Config
+                </button>
+                <button onclick="debugEnv()" class="bg-purple-500 text-white px-6 py-2 rounded hover:bg-purple-600">
+                    Debug Environment
+                </button>
+            </div>
             
             <div id="email-loading" class="loading mt-4">
                 <div class="flex items-center">
@@ -177,6 +182,39 @@ if (!isset($_SESSION['user_id'])) {
                 
                 // Show success/error styling based on API test
                 if (data.api_test && data.api_test.success) {
+                    result.classList.add('border-green-300', 'bg-green-50');
+                    result.classList.remove('border-red-300', 'bg-red-50');
+                } else {
+                    result.classList.add('border-red-300', 'bg-red-50');
+                    result.classList.remove('border-green-300', 'bg-green-50');
+                }
+                
+            } catch (error) {
+                content.textContent = 'Error: ' + error.message;
+                result.classList.remove('hidden');
+                result.classList.add('border-red-300', 'bg-red-50');
+            } finally {
+                loading.classList.remove('show');
+            }
+        }
+        
+        async function debugEnv() {
+            const loading = document.getElementById('email-loading');
+            const result = document.getElementById('email-result');
+            const content = document.getElementById('email-result-content');
+            
+            loading.classList.add('show');
+            result.classList.add('hidden');
+            
+            try {
+                const response = await fetch('/debug-env.php');
+                const data = await response.json();
+                
+                content.textContent = JSON.stringify(data, null, 2);
+                result.classList.remove('hidden');
+                
+                // Show success/error styling based on environment loading
+                if (data.defined_constants && data.defined_constants.MAILGUN_DOMAIN !== 'NOT_DEFINED') {
                     result.classList.add('border-green-300', 'bg-green-50');
                     result.classList.remove('border-red-300', 'bg-red-50');
                 } else {

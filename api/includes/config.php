@@ -10,13 +10,13 @@ define('DB_PORT', '15146');
 define('DB_SSL_MODE', 'REQUIRED');
 
 // Application configuration
-define('SITE_URL', 'http://localhost');
+define('SITE_URL', getenv('SITE_URL') ?: 'http://localhost');
 define('GOOGLE_CLIENT_ID', getenv('GOOGLE_CLIENT_ID') ?: 'your_google_client_id_here');
 define('GOOGLE_MAPS_API_KEY', getenv('GOOGLE_MAPS_API_KEY') ?: 'your_google_maps_api_key_here');
 
 // Mailgun configuration
 define('MAILGUN_API_KEY', getenv('MAILGUN_API_KEY') ?: 'your_mailgun_api_key_here');
-define('MAILGUN_DOMAIN', 'otp.jflyc.com');
+define('MAILGUN_DOMAIN', getenv('MAILGUN_DOMAIN') ?: 'otp.jflyc.com');
 define('SENDER_EMAIL', getenv('SENDER_EMAIL') ?: 'noreply@yourdomain.com');
 
 // Database connection class

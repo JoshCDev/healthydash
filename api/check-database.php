@@ -63,24 +63,24 @@ try {
     // If menu_items is empty, populate with sample data
     if ($menuCount['count'] == 0) {
         $sampleMenuData = [
-            ['name' => 'Nasi Goreng Spesial', 'price' => 25000, 'category' => 'Main Course', 'image_url' => '/assets/images/nasi-goreng.jpg'],
-            ['name' => 'Ayam Bakar', 'price' => 30000, 'category' => 'Main Course', 'image_url' => '/assets/images/ayam-bakar.jpg'],
-            ['name' => 'Gado-Gado', 'price' => 20000, 'category' => 'Salad', 'image_url' => '/assets/images/gado-gado.jpg'],
-            ['name' => 'Soto Ayam', 'price' => 23000, 'category' => 'Soup', 'image_url' => '/assets/images/soto-ayam.jpg'],
-            ['name' => 'Es Teh Manis', 'price' => 8000, 'category' => 'Drink', 'image_url' => '/assets/images/es-teh.jpg'],
-            ['name' => 'Jus Jeruk', 'price' => 12000, 'category' => 'Drink', 'image_url' => '/assets/images/jus-jeruk.jpg'],
-            ['name' => 'Rendang', 'price' => 35000, 'category' => 'Main Course', 'image_url' => '/assets/images/rendang.jpg'],
-            ['name' => 'Pecel Lele', 'price' => 18000, 'category' => 'Main Course', 'image_url' => '/assets/images/pecel-lele.jpg']
+            ['name' => 'Nasi Goreng Spesial', 'description' => 'Nasi goreng dengan telur dan ayam', 'price' => 25000, 'image_url' => '/assets/images/nasi-goreng.jpg'],
+            ['name' => 'Ayam Bakar', 'description' => 'Ayam bakar bumbu khas dengan lalapan', 'price' => 30000, 'image_url' => '/assets/images/ayam-bakar.jpg'],
+            ['name' => 'Gado-Gado', 'description' => 'Salad sayuran segar dengan bumbu kacang', 'price' => 20000, 'image_url' => '/assets/images/gado-gado.jpg'],
+            ['name' => 'Soto Ayam', 'description' => 'Sup ayam dengan kuah bening dan rempah', 'price' => 23000, 'image_url' => '/assets/images/soto-ayam.jpg'],
+            ['name' => 'Es Teh Manis', 'description' => 'Teh manis dingin segar', 'price' => 8000, 'image_url' => '/assets/images/es-teh.jpg'],
+            ['name' => 'Jus Jeruk', 'description' => 'Jus jeruk segar tanpa gula tambahan', 'price' => 12000, 'image_url' => '/assets/images/jus-jeruk.jpg'],
+            ['name' => 'Rendang', 'description' => 'Daging sapi rendang bumbu Padang', 'price' => 35000, 'image_url' => '/assets/images/rendang.jpg'],
+            ['name' => 'Pecel Lele', 'description' => 'Lele goreng dengan sambal dan lalapan', 'price' => 18000, 'image_url' => '/assets/images/pecel-lele.jpg']
         ];
         
         $insertStmt = $db->prepare("
-            INSERT INTO menu_items (name, price, category, image_url, is_available, created_at, updated_at) 
+            INSERT INTO menu_items (name, description, price, image_url, is_available, created_at, updated_at) 
             VALUES (?, ?, ?, ?, 1, NOW(), NOW())
         ");
         
         $inserted = 0;
         foreach ($sampleMenuData as $item) {
-            if ($insertStmt->execute([$item['name'], $item['price'], $item['category'], $item['image_url']])) {
+            if ($insertStmt->execute([$item['name'], $item['description'], $item['price'], $item['image_url']])) {
                 $inserted++;
             }
         }
@@ -92,7 +92,7 @@ try {
     // If there are missing menu items for existing orders, create them
     if (!empty($missingItems)) {
         $insertStmt = $db->prepare("
-            INSERT INTO menu_items (item_id, name, price, category, image_url, is_available, created_at, updated_at) 
+            INSERT INTO menu_items (item_id, name, description, price, image_url, is_available, created_at, updated_at) 
             VALUES (?, ?, ?, ?, ?, 1, NOW(), NOW())
         ");
         
@@ -102,8 +102,8 @@ try {
             if ($insertStmt->execute([
                 $itemId, 
                 "Food Item #$itemId", 
+                'Menu item yang dipesan sebelumnya',
                 20000, 
-                'Main Course', 
                 '/assets/images/default-food.jpg'
             ])) {
                 $createdItems++;
