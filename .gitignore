@@ -46,5 +46,11 @@ debug-*.php
 # Local development files
 config-local.php
 
-# Credentials file (contains actual secrets)
-ACTUAL-CREDENTIALS.md 
+# Credentials and sensitive files
+ACTUAL-CREDENTIALS.md
+*-credentials.md
+*-secrets.md
+*.key
+*.pem
+config-production.php
+.env.production.local 

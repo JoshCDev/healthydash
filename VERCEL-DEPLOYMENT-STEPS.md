@@ -22,7 +22,7 @@
 ## 🔧 **Environment Variables for Vercel:**
 
 ```env
-DB_HOST=healthydash-healthydash.c.aivencloud.com
+DB_HOST=[YOUR_DATABASE_HOST]
 DB_NAME=defaultdb
 DB_USER=avnadmin
 DB_PASS=your_aiven_password_here

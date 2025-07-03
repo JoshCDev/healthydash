@@ -15,7 +15,7 @@ Aplikasi HealthyDash telah berhasil dikonfigurasi dan siap untuk dideploy ke Ver
 
 **Database Details:**
 
-- Host: `healthydash-healthydash.c.aivencloud.com`
+- Host: `[SET IN VERCEL ENVIRONMENT]`
 - Port: `15146`
 - Database: `defaultdb`
 - Tables: 11 tabel (users, menu_items, orders, cart_items, dll.)
@@ -87,7 +87,7 @@ git push origin main
 Di Vercel Project Settings → Environment Variables:
 
 ```env
-DB_HOST=healthydash-healthydash.c.aivencloud.com
+DB_HOST=[SET_IN_VERCEL_ENVIRONMENT]
 DB_NAME=defaultdb
 DB_USER=avnadmin
 DB_PASS=your_aiven_password_here

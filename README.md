@@ -2,7 +2,7 @@
 
 ## Deskripsi Proyek
 
-HealthyDash adalah platform pemesanan makanan sehat berbasis web yang dirancang untuk memudahkan pengguna dalam memesan makanan bergizi dengan antarmuka yang modern dan user-friendly. Aplikasi ini menyediakan sistem pemesanan lengkap dengan autentikasi pengguna, manajemen alamat, dan integrasi pembayaran.
+HealthyDash adalah platform pemesanan makanan sehat berbasis web yang dirancang untuk memudahkan pengguna dalam memesan makanan bergizi dengan antarmuka yang modern dan user-friendly. Aplikasi ini menyediakan sistem pemesanan lengkap dengan autentikasi pengguna, manajemen alamat, dan nilai gizi serta cara pembuatan suatu makanan.
 
 ## 🚀 Teknologi yang Digunakan
 
@@ -24,7 +24,7 @@ HealthyDash adalah platform pemesanan makanan sehat berbasis web yang dirancang 
 - **Google OAuth 2.0** - Sign-in dengan akun Google
 - **Custom Authentication** - Sistem login/register tradisional
 - **OTP Verification** - Verifikasi email dengan kode OTP
-- **Password Hashing** - Enkripsi password dengan algoritma aman
+- **Password Hashing** - Pemrosesan password dengan algoritma SHA-256 yang bersifat satu arah sehingga privasi pengguna terjaga dan tidak bisa dibaca oleh developer
 
 ### Infrastruktur & Deployment
 
@@ -54,7 +54,7 @@ HealthyDash adalah platform pemesanan makanan sehat berbasis web yang dirancang 
   - Login dengan email atau username
   - Integrasi Google Sign-In
   - Remember me functionality
-  - Password reset via email
+  - Password reset via username/email
 
 ### 🍽️ Sistem Pemesanan
 
@@ -139,16 +139,22 @@ CREATE DATABASE healthydash;
 mysql -u username -p healthydash < database/healthydash.sql
 ```
 
-#### Production (Aiven.io)
+#### Production (Cloud Database)
 
 ```bash
-# Database sudah dikonfigurasi di Aiven.io
-# Host: healthydash-healthydash.c.aivencloud.com
-# Port: 15146
-# Database: defaultdb
+# Database dikonfigurasi di cloud provider (Aiven.io)
+# Credentials disimpan sebagai environment variables di Vercel
+# Tidak hardcode credentials di code repository
 ```
 
 ### 4. Konfigurasi Environment Variables
+
+**⚠️ PENTING: Keamanan Credentials**
+
+- **JANGAN PERNAH** commit file `.env` ke repository
+- **JANGAN** hardcode API keys atau password di dalam code
+- Gunakan environment variables untuk semua kredensial sensitif
+- File `environment-template.txt` hanya berisi template tanpa nilai asli
 
 Buat file `.env` berdasarkan `environment-template.txt`:
 
@@ -160,12 +166,12 @@ DB_USER=root
 DB_PASS=your_password
 DB_PORT=3306
 
-# Production Database (Aiven.io)
-# DB_HOST=healthydash-healthydash.c.aivencloud.com
-# DB_PORT=15146
-# DB_NAME=defaultdb
-# DB_USER=avnadmin
-# DB_PASS=AVNS_RsO3JpOe61ZJrm0dLhC
+# Production Database (Aiven.io) - Set in Vercel Environment
+# DB_HOST=your_production_host
+# DB_PORT=your_production_port
+# DB_NAME=your_production_database
+# DB_USER=your_production_user
+# DB_PASS=your_production_password
 
 # Application Settings
 SITE_URL=http://localhost:8080
@@ -220,6 +226,8 @@ npm i -g vercel
 vercel
 
 # Set environment variables di Vercel dashboard
+# PENTING: Semua credentials sensitif harus diset di Vercel Environment Variables
+# Tidak boleh ada hardcoded values di dalam code atau repository
 ```
 
 ### 8. Konfigurasi Additional
@@ -236,6 +244,50 @@ php run-migration-script.php
 ```bash
 # Untuk production di Vercel, session disimpan di database
 # Tabel sessions akan dibuat otomatis
+```
+
+## 🔐 Keamanan Credentials
+
+### Best Practices untuk Environment Variables
+
+1. **Development (Local)**
+
+   ```bash
+   # Buat file .env di root directory (sudah ada di .gitignore)
+   # Copy dari environment-template.txt
+   # Isi dengan values development Anda
+   ```
+
+2. **Production (Vercel)**
+
+   ```bash
+   # Jangan commit credentials ke repository
+   # Set semua environment variables di Vercel Dashboard:
+   # Settings > Environment Variables
+   ```
+
+3. **File yang HARUS diabaikan Git:**
+   ```bash
+   .env
+   .env.local
+   .env.production
+   config-production.php (jika berisi credentials)
+   ```
+
+### Credentials yang Perlu Diproteksi
+
+- Database passwords
+- API keys (Mailgun, Google Maps, dll)
+- OAuth client secrets
+- Session secrets
+- Encryption keys
+
+### Verifikasi Keamanan
+
+```bash
+# Pastikan tidak ada credentials di repository
+git log --all --full-history -- "*.env*"
+grep -r "password\|api_key\|secret" --exclude-dir=.git --exclude="*.md"
 ```
 
 ## 🤖 Dukungan AI dalam Pengembangan
