@@ -34,8 +34,8 @@ Thumbs.db
 temp/
 *.tmp
 
-# Archive files (keep healthybites.rar as it might be needed)
-# *.rar
+# Archive files
+*.rar
 *.zip
 
 # Test files (already cleaned up)
@@ -57,4 +57,12 @@ config-production.php
 
 # Documentation files (keep only README.md public)
 *.md
-!README.md 
+!README.md
+
+# Documentation files (keep only README.md public)
+*.md
+!README.md
+
+# Design files
+design_sample.txt
+design*.txt 

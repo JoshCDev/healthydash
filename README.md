@@ -403,7 +403,6 @@ Proyek HealthyDash dikembangkan dengan bantuan AI assistant untuk meningkatkan k
    - Backend development specialization
    - Database relationships dan connection optimization
    - Server-side logic dan API development
-   - Performance tuning untuk backend systems
 
 3. **Claude Sonnet 4**
 
