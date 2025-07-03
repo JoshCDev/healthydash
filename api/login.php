@@ -287,15 +287,16 @@ if (isset($_POST['credential'])) {
         .error-message {
             color: #ff3b30;
             font-size: 12px;
-            margin-top: 5px;
+            margin-top: 8px;
+            margin-left: 4px;
             display: none;
             opacity: 0;
             transition: opacity 0.3s ease;
+            line-height: 1.4;
         }
         .error-message.visible {
             display: block;
             opacity: 1;
-            margin-left: 4px;
         }
         .remember-forgot {
             display: flex;
@@ -582,7 +583,7 @@ if (isset($_POST['credential'])) {
         } finally {
             isCheckingUser = false;
             validationState.identifier.checked = true;
-            updateSubmitButton();
+            validateForm();
         }
     }
 
@@ -600,30 +601,14 @@ if (isset($_POST['credential'])) {
         }
     }
 
-    // Error handling
-    function showError(elementId, message) {
-    const errorDiv = document.createElement('div');
-    errorDiv.className = 'error-message visible';
-    errorDiv.style.textAlign = 'center';
-    errorDiv.style.marginBottom = '15px';
-    errorDiv.textContent = message;
-    
-    const googleBtn = document.querySelector('.google-btn');
-    if (googleBtn) {
-        // Remove existing error if any
-        const existingError = document.getElementById(elementId);
-        if (existingError) {
-            existingError.remove();
+    // Error handling for individual fields
+    function showError(element, message) {
+        const errorDiv = document.getElementById(`${element.id}-error`);
+        if (errorDiv) {
+            errorDiv.textContent = message;
+            errorDiv.classList.add('visible');
         }
-        
-        googleBtn.parentNode.insertBefore(errorDiv, googleBtn);
-        
-        setTimeout(() => {
-            errorDiv.style.opacity = '0';
-            setTimeout(() => errorDiv.remove(), 300);
-        }, 5000);
     }
-}
 
 window.onload = function() {
     if (typeof google === 'undefined') {
@@ -637,6 +622,7 @@ window.onload = function() {
         const errorDiv = document.getElementById(`${element.id}-error`);
         if (errorDiv) {
             errorDiv.classList.remove('visible');
+            errorDiv.textContent = '';
         }
     }
 
@@ -749,7 +735,21 @@ window.onload = function() {
         form.submit();
     } catch (error) {
         console.error("Error in form submission:", error);
-        showError('google-error', 'Failed to process Google sign-in');
+        // Create a temporary error message for Google sign-in
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'error-message visible';
+        errorDiv.style.textAlign = 'center';
+        errorDiv.style.marginBottom = '15px';
+        errorDiv.textContent = 'Failed to process Google sign-in';
+        
+        const googleBtn = document.querySelector('.google-btn');
+        if (googleBtn) {
+            googleBtn.parentNode.insertBefore(errorDiv, googleBtn);
+            setTimeout(() => {
+                errorDiv.style.opacity = '0';
+                setTimeout(() => errorDiv.remove(), 300);
+            }, 5000);
+        }
     }
 }
 

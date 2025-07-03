@@ -458,16 +458,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         .error-message {
             color: #ff3b30;
             font-size: 12px;
-            margin-top: 5px;
+            margin-top: 8px;
+            margin-left: 4px;
             display: none;
             opacity: 0;
             transition: opacity 0.3s ease;
-            text-align:center;
+            text-align: left;
+            line-height: 1.4;
         }
 
         .error-message.visible {
             display: block;
             opacity: 1;
+        }
+
+        /* Special styling for terms error */
+        .checkbox-container .error-message {
+            margin-left: 28px;
+            margin-top: 5px;
+            font-size: 11px;
         }
 
         /* Checkbox styling */
@@ -811,6 +820,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <a href="#" class="open-modal" data-modal-id="modal1">Privacy Policy</a> and 
                     <a href="#" class="open-modal" data-modal-id="modal2">Terms of Service</a>
                 </label>
+                <div class="error-message" id="terms-error"></div>
             </div>
 
             <button type="submit" 
@@ -848,7 +858,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     Already have an account? <a href="login.php">Login</a>
 </p>
             <div class="logo">
-                <img src="/assets/images/healthydashlogo.png" alt="FinTuner logo">
+                <img src="/assets/images/healthydashlogo.png" alt="HealthyDash logo">
             </div>
         </form>
     </div>
@@ -1307,6 +1317,7 @@ function checkEmailAvailability(email) {
 
         function hideError(element) {
             element.classList.remove('visible');
+            element.textContent = '';
         }
 
         // Update submit button state
@@ -1370,7 +1381,13 @@ function checkEmailAvailability(email) {
             });
         });
 
-        document.getElementById('terms').addEventListener('change', updateSubmitButton);
+        document.getElementById('terms').addEventListener('change', function() {
+            const termsError = document.getElementById('terms-error');
+            if (this.checked) {
+                hideError(termsError);
+            }
+            updateSubmitButton();
+        });
 
         // Form submission
         form.addEventListener('submit', function(e) {
@@ -1420,7 +1437,8 @@ function checkEmailAvailability(email) {
     const termsCheckbox = document.getElementById('terms');
     
     if (!termsCheckbox.checked) {
-        showError('terms-error', 'Please accept the terms and conditions');
+        const termsError = document.getElementById('terms-error');
+        showError(termsError, 'Please accept the terms and conditions');
         return;
     }
 
@@ -1443,7 +1461,21 @@ function checkEmailAvailability(email) {
         form.submit();
     } catch (error) {
         console.error("Error in form submission:", error);
-        showError('google-error', 'Failed to process Google sign-in');
+        // Create a temporary error message for Google sign-in
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'error-message visible';
+        errorDiv.style.textAlign = 'center';
+        errorDiv.style.marginBottom = '15px';
+        errorDiv.textContent = 'Failed to process Google sign-in';
+        
+        const googleBtn = document.querySelector('.google-btn');
+        if (googleBtn) {
+            googleBtn.parentNode.insertBefore(errorDiv, googleBtn);
+            setTimeout(() => {
+                errorDiv.style.opacity = '0';
+                setTimeout(() => errorDiv.remove(), 300);
+            }, 5000);
+        }
     }
 }
 
