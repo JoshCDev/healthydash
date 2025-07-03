@@ -53,4 +53,8 @@ ACTUAL-CREDENTIALS.md
 *.key
 *.pem
 config-production.php
-.env.production.local 
+.env.production.local
+
+# Documentation files (keep only README.md public)
+*.md
+!README.md 

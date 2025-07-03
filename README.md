@@ -334,10 +334,24 @@ Proyek HealthyDash dikembangkan dengan bantuan AI assistant untuk meningkatkan k
 
 2. **Development Phase**
 
-   - Real-time code suggestions
-   - Auto-completion untuk complex functions
-   - Pattern recognition untuk consistent coding style
-   - Integration suggestions untuk third-party services
+   - **Backend Development** (IBM Granite 3.3 8B):
+
+     - Database schema design dan optimization
+     - API endpoint development
+     - Server-side logic implementation
+     - Performance tuning
+
+   - **Frontend Development** (Claude Sonnet 4):
+
+     - User interface design dan implementation
+     - Responsive layout optimization
+     - User experience enhancement
+     - Cross-browser compatibility
+
+   - **General Development** (Cursor IDE):
+     - Real-time code suggestions
+     - Auto-completion untuk complex functions
+     - Pattern recognition untuk consistent coding style
 
 3. **Testing Phase**
 
@@ -384,30 +398,27 @@ Proyek HealthyDash dikembangkan dengan bantuan AI assistant untuk meningkatkan k
    - Refactoring suggestions
    - Documentation generation
 
-2. **Claude Assistant**
+2. **IBM Granite 3.3 8B Instruct**
 
-   - Complex problem solving
-   - Architecture planning
-   - Code review dan optimization
-   - Best practices implementation
+   - Backend development specialization
+   - Database relationships dan connection optimization
+   - Server-side logic dan API development
+   - Performance tuning untuk backend systems
 
-3. **GitHub Copilot** (Optional)
+3. **Claude Sonnet 4**
+
+   - Frontend development dan user interface
+   - Responsive design implementation
+   - User experience optimization
+   - Cross-platform compatibility
+
+4. **GitHub Copilot** (Optional)
    - Code suggestions
    - Pattern completion
    - Function generation
    - Comment-to-code conversion
 
 ## 📝 Dokumentasi Tambahan
-
-### File Dokumentasi dalam Project
-
-- `ADDRESS-TYPE-FIX.md` - Fix untuk custom address types
-- `MIGRATION-COMPLETED.md` - Status migrasi database
-- `SESSION-LOGOUT-FIXES.md` - Perbaikan sistem session
-- `LOGIN-OTP-FIXES.md` - Fix untuk autentikasi OTP
-- `VALIDATION-UPDATE.md` - Update sistem validasi form
-- `DEPLOYMENT.md` - Panduan deployment lengkap
-- `VERCEL-SESSION-FIXES.md` - Fix session untuk Vercel deployment
 
 ### API Endpoints
 
@@ -438,8 +449,11 @@ Project ini menggunakan MIT License. Lihat file `LICENSE` untuk detail lengkap.
 ## 👥 Tim Pengembang
 
 - **Lead Developer**: [Josh C](https://github.com/JoshCDev)
-- **AI Assistant**: Claude (Anthropic)
-- **Development Environment**: Cursor IDE
+- **AI Development Stack**:
+  - **Cursor IDE**: Development environment dengan AI assistance
+  - **IBM Granite 3.3 8B**: Backend development & database optimization
+  - **Claude Sonnet 4**: Frontend development & UI/UX
+  - **GitHub Copilot**: Code completion support
 
 ## 📞 Kontak & Support
 
