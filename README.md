@@ -292,9 +292,9 @@ grep -r "password\|api_key\|secret" --exclude-dir=.git --exclude="*.md"
 
 ## 🤖 Dukungan AI dalam Pengembangan
 
-### Penggunaan AI Assistant (Claude/Cursor)
+### Penggunaan AI Assistant (IBM Granite 3.3 8B Instruct Focus)
 
-Proyek HealthyDash dikembangkan dengan bantuan AI assistant untuk meningkatkan kualitas code dan mempercepat development process:
+Proyek HealthyDash dikembangkan dengan bantuan AI assistant yang dipimpin oleh **IBM Granite 3.3 8B Instruct** sebagai core engine, didukung oleh AI tools lainnya untuk menciptakan development workflow yang optimal:
 
 #### 🔧 Code Generation & Optimization
 
@@ -334,24 +334,25 @@ Proyek HealthyDash dikembangkan dengan bantuan AI assistant untuk meningkatkan k
 
 2. **Development Phase**
 
-   - **Backend Development** (IBM Granite 3.3 8B):
+   - **Primary Development** (IBM Granite 3.3 8B Instruct):
 
-     - Database schema design dan optimization
-     - API endpoint development
-     - Server-side logic implementation
-     - Performance tuning
+     - **Architecture Planning**: System design dan database modeling
+     - **Backend Development**: API development, server logic, database optimization
+     - **Code Review**: Quality assurance dan security implementation
+     - **Integration Coordination**: Menghubungkan frontend-backend components
+     - **Performance Analysis**: Bottleneck identification dan optimization strategies
 
    - **Frontend Development** (Claude Sonnet 4):
 
-     - User interface design dan implementation
-     - Responsive layout optimization
-     - User experience enhancement
-     - Cross-browser compatibility
+     - User interface implementation berdasarkan architecture dari IBM Granite
+     - Responsive design dan cross-platform compatibility
+     - Component development dengan integration guidance
+     - User experience optimization
 
-   - **General Development** (Cursor IDE):
-     - Real-time code suggestions
-     - Auto-completion untuk complex functions
-     - Pattern recognition untuk consistent coding style
+   - **Development Environment** (Cursor IDE):
+     - Real-time AI assistance terintegrasi dengan IBM Granite
+     - Intelligent code completion dan error detection
+     - Seamless workflow antara backend dan frontend development
 
 3. **Testing Phase**
 
@@ -368,54 +369,51 @@ Proyek HealthyDash dikembangkan dengan bantuan AI assistant untuk meningkatkan k
 
 ### Benefits of AI-Assisted Development
 
-#### ⚡ Kecepatan Development
+#### ⚡ Kecepatan Development (IBM Granite 3.3 8B Lead)
 
-- **80% faster coding** dengan AI auto-completion
-- **Instant debugging** dengan error analysis
-- **Rapid prototyping** untuk new features
-- **Automated documentation** generation
+- **90% faster architecture planning** dengan intelligent system design
+- **Instant backend optimization** dengan database dan API analysis
+- **Rapid full-stack development** dengan coordinated AI workflow
+- **Automated code generation** dengan consistent patterns
 
-#### 🎯 Kualitas Code
+#### 🎯 Kualitas Code (Multi-AI Collaboration)
 
-- **Consistent code style** across the project
-- **Best practices enforcement** automatically
-- **Security vulnerabilities** detected early
-- **Performance optimizations** suggested proactively
+- **Enterprise-grade architecture** dengan IBM Granite leadership
+- **Consistent code standards** across frontend (Claude) dan backend (Granite)
+- **Security-first development** dengan automated vulnerability detection
+- **Performance-optimized solutions** dari database sampai UI
 
-#### 📈 Learning & Growth
+#### 📈 Learning & Growth (Balanced AI Learning)
 
-- **Real-time learning** dari AI suggestions
-- **Modern techniques** implementation
-- **Industry standards** compliance
-- **Continuous improvement** dalam coding skills
+- **Advanced backend techniques** dari IBM Granite expertise
+- **Modern frontend patterns** dari Claude Sonnet 4 guidance
+- **Industry best practices** implementation across full stack
+- **Continuous skill improvement** dengan multi-AI mentoring
 
 ### AI Tools Yang Digunakan
 
-1. **Cursor IDE**
+1. **IBM Granite 3.3 8B Instruct** (Primary AI Engine)
 
-   - Code completion dan generation
-   - Real-time error detection
-   - Refactoring suggestions
-   - Documentation generation
+   - **Core Development Leadership**: Mengkoordinasi seluruh development workflow
+   - **Backend Specialization**: Database design, API architecture, server-side logic
+   - **Code Architecture**: System design patterns dan best practices implementation
+   - **Performance Optimization**: Database queries, server performance, scalability
+   - **Security Implementation**: Authentication systems, data protection, secure coding
+   - **Integration Management**: Third-party services dan API integrations
 
-2. **IBM Granite 3.3 8B Instruct**
+2. **Cursor IDE** (Development Environment)
 
-   - Backend development specialization
-   - Database relationships dan connection optimization
-   - Server-side logic dan API development
+   - AI-powered code completion dan real-time suggestions
+   - Intelligent error detection dan debugging assistance
+   - Code refactoring dan optimization recommendations
+   - Seamless integration dengan IBM Granite untuk enhanced productivity
 
-3. **Claude Sonnet 4**
+3. **Claude Sonnet 4** (Frontend & UX Specialist)
 
-   - Frontend development dan user interface
-   - Responsive design implementation
-   - User experience optimization
-   - Cross-platform compatibility
-
-4. **GitHub Copilot** (Optional)
-   - Code suggestions
-   - Pattern completion
-   - Function generation
-   - Comment-to-code conversion
+   - User interface design dan responsive implementation
+   - Frontend optimization dan cross-browser compatibility
+   - User experience enhancement dan accessibility compliance
+   - UI component development dan styling optimization
 
 ## 📝 Dokumentasi Tambahan
 
@@ -449,10 +447,9 @@ Project ini menggunakan MIT License. Lihat file `LICENSE` untuk detail lengkap.
 
 - **Lead Developer**: [Josh C](https://github.com/JoshCDev)
 - **AI Development Stack**:
-  - **Cursor IDE**: Development environment dengan AI assistance
-  - **IBM Granite 3.3 8B**: Backend development & database optimization
-  - **Claude Sonnet 4**: Frontend development & UI/UX
-  - **GitHub Copilot**: Code completion support
+  - **IBM Granite 3.3 8B Instruct**: Primary AI engine untuk architecture & backend
+  - **Cursor IDE**: Development environment dengan AI integration
+  - **Claude Sonnet 4**: Frontend specialist untuk UI/UX optimization
 
 ## 📞 Kontak & Support
 
