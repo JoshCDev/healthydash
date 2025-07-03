@@ -108,10 +108,13 @@ if (!isset($_SESSION['user_id'])) {
                     <h3 class="font-medium text-gray-800 mb-2">🍽️ Order History Issues</h3>
                     <p class="text-sm text-gray-600 mb-3">Items showing as "Unknown Item"</p>
                     <ul class="text-sm text-gray-600 space-y-1">
-                        <li>• Tabel menu_items kosong</li>
+                        <li>• Tabel menu_items kosong (akan populate 10 menu items)</li>
                         <li>• Missing relasi order_items → menu_items</li>
-                        <li>• Data tidak sinkron</li>
+                        <li>• Data tidak sinkron dengan menu.php</li>
                     </ul>
+                    <div class="mt-2 text-xs text-blue-600">
+                        <strong>Auto-fix:</strong> Populate dengan data asli dari menu.php
+                    </div>
                 </div>
                 
                 <div class="border rounded-lg p-4">
