@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email_login'])) {
             $stmt->execute([$identifier, $identifier]);
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
             
-            if ($user && password_verify($password, $user['password_hash'])) {
+            if ($user && $user['password_hash'] && password_verify($password, $user['password_hash'])) {
                 // Log successful login
                 $stmt = $db->prepare("
                     INSERT INTO auth_logs (
@@ -91,6 +91,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email_login'])) {
             } else {
                 if (!$user) {
                     $errors['login'] = "Account not found. Please check your email/username or sign up";
+                } else if (!$user['password_hash']) {
+                    $errors['login'] = "This account uses Google Sign-In. Please use the Google button below";
                 } else {
                     $errors['login'] = "Invalid password";
                 }

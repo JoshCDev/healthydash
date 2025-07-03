@@ -1,6 +1,9 @@
 <?php
-session_start();
-require_once '../includes/otp_handler.php';
+// Session already started by index.php, check before starting
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+require_once __DIR__ . '/includes/otp_handler.php';
 
 // Redirect if no signup data
 if (!isset($_SESSION['signup_data']) || !isset($_SESSION['otp_id'])) {
@@ -16,12 +19,8 @@ if (time() - $_SESSION['signup_data']['timestamp'] > 170) {
 }
 
 // Database connection
-try {
-    $db = new PDO("mysql:host=localhost;dbname=healthydash", "root", "");
-    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch(PDOException $e) {
-    die("Connection failed: " . $e->getMessage());
-}
+require_once __DIR__ . '/includes/config.php';
+$db = Database::getInstance();
 
 $otpHandler = new OTPHandler();
 $message = '';
@@ -37,12 +36,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 try {
                     $db->beginTransaction();
                     
-                    // Hash password with Argon2id
-                    $password_hash = password_hash($_SESSION['signup_data']['password'], PASSWORD_ARGON2ID, [
-                        'memory_cost' => 1024 * 64,
-                        'time_cost'   => 4,
-                        'threads'     => 2
-                    ]);
+                    // Hash password with default algorithm (bcrypt)
+                    $password_hash = password_hash($_SESSION['signup_data']['password'], PASSWORD_DEFAULT);
                 
                     if ($password_hash === false) {
                         throw new Exception("Password hashing failed");
