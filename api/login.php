@@ -298,6 +298,12 @@ if (isset($_POST['credential'])) {
             display: block;
             opacity: 1;
         }
+
+        /* Show PHP errors immediately */
+        .error-message:not(:empty) {
+            display: block;
+            opacity: 1;
+        }
         .remember-forgot {
             display: flex;
             justify-content: space-between;

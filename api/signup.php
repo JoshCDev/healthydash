@@ -205,6 +205,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $errors['username'] = "Username must be at least 3 characters";
         } elseif (!preg_match('/^[a-zA-Z0-9_]+$/', $username)) {
             $errors['username'] = "Username can only contain letters, numbers, and underscores";
+        } else {
+            // Check if username already exists
+            $stmt = $db->prepare("SELECT username FROM users WHERE username = ?");
+            $stmt->execute([$username]);
+            if ($stmt->rowCount() > 0) {
+                $errors['username'] = "Username already taken";
+            }
         }
         
         // Email validation
@@ -468,6 +475,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         .error-message.visible {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Show PHP errors immediately */
+        .error-message:not(:empty) {
             display: block;
             opacity: 1;
         }
@@ -748,7 +761,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                        placeholder="Username*" 
                        value="<?php echo htmlspecialchars($username ?? ''); ?>"
                        required>
-                <div class="error-message" id="username-error"></div>
+                <div class="error-message" id="username-error">
+                    <?php if (isset($errors['username'])): ?>
+                        <?php echo htmlspecialchars($errors['username']); ?>
+                    <?php endif; ?>
+                </div>
             </div>
 
             <div class="form-group">
@@ -758,7 +775,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                        placeholder="Email*"
                        value="<?php echo htmlspecialchars($email ?? ''); ?>"
                        required>
-                <div class="error-message" id="email-error"></div>
+                <div class="error-message" id="email-error">
+                    <?php if (isset($errors['email'])): ?>
+                        <?php echo htmlspecialchars($errors['email']); ?>
+                    <?php endif; ?>
+                </div>
             </div>
 
             <div class="form-group">
@@ -787,7 +808,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
                     <span class="strength-text" id="strength-text">Kekuatan Password</span>
                 </div>
-                <div class="error-message" id="password-error"></div>
+                <div class="error-message" id="password-error">
+                    <?php if (isset($errors['password'])): ?>
+                        <?php echo htmlspecialchars($errors['password']); ?>
+                    <?php endif; ?>
+                </div>
             </div>
 
             <div class="form-group">
@@ -807,7 +832,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                              id="confirmPassword-toggle-icon">
                     </button>
                 </div>
-                <div class="error-message" id="confirmPassword-error"></div>
+                <div class="error-message" id="confirmPassword-error">
+                    <?php if (isset($errors['confirmPassword'])): ?>
+                        <?php echo htmlspecialchars($errors['confirmPassword']); ?>
+                    <?php endif; ?>
+                </div>
             </div>
 
             <div class="checkbox-container">
@@ -820,7 +849,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <a href="#" class="open-modal" data-modal-id="modal1">Privacy Policy</a> and 
                     <a href="#" class="open-modal" data-modal-id="modal2">Terms of Service</a>
                 </label>
-                <div class="error-message" id="terms-error"></div>
+                <div class="error-message" id="terms-error">
+                    <?php if (isset($errors['terms'])): ?>
+                        <?php echo htmlspecialchars($errors['terms']); ?>
+                    <?php endif; ?>
+                </div>
             </div>
 
             <button type="submit" 
@@ -1479,36 +1512,7 @@ function checkEmailAvailability(email) {
     }
 }
 
-// Add this function
-function showError(elementId, message) {
-    const errorDiv = document.getElementById(elementId);
-    if (errorDiv) {
-        errorDiv.textContent = message;
-        errorDiv.classList.add('visible');
-        
-        // Auto-hide after 5 seconds
-        setTimeout(() => {
-            errorDiv.classList.remove('visible');
-        }, 5000);
-    } else {
-        // Create error element if it doesn't exist
-        const newError = document.createElement('div');
-        newError.id = elementId;
-        newError.className = 'error-message visible';
-        newError.textContent = message;
-        
-        // Find appropriate place to insert error
-        const googleBtn = document.querySelector('.google-btn');
-        if (googleBtn) {
-            googleBtn.parentNode.insertBefore(newError, googleBtn);
-        }
-        
-        // Auto-hide
-        setTimeout(() => {
-            newError.remove();
-        }, 5000);
-    }
-}
+
 
 window.onload = function() {
     if (typeof google === 'undefined') {
