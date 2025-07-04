@@ -2,8 +2,7 @@
 SQLyog Ultimate v10.00 Beta1
 MySQL - 5.5.5-10.4.32-MariaDB : Database - healthydash
 *********************************************************************
-*/
-
+*/
 
 /*!40101 SET NAMES utf8 */;
 
@@ -31,11 +30,7 @@ CREATE TABLE `auth_logs` (
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `auth_logs_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-/*Data for the table `auth_logs` */
-
-insert  into `auth_logs`(`id`,`user_id`,`action`,`ip_address`,`user_agent`,`timestamp`) values (1,1,'GOOGLE_REGISTRATION','127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36','2025-06-30 02:51:43'),(2,1,'GOOGLE_LOGIN','127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36','2025-06-30 03:04:37'),(3,1,'GOOGLE_LOGIN','127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36','2025-06-30 03:29:27');
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Table structure for table `cart_items` */
 
@@ -56,8 +51,6 @@ CREATE TABLE `cart_items` (
   CONSTRAINT `cart_items_ibfk_2` FOREIGN KEY (`item_id`) REFERENCES `menu_items` (`item_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-/*Data for the table `cart_items` */
-
 /*Table structure for table `google_auth_attempts` */
 
 DROP TABLE IF EXISTS `google_auth_attempts`;
@@ -69,10 +62,6 @@ CREATE TABLE `google_auth_attempts` (
   PRIMARY KEY (`id`),
   KEY `ip` (`ip`,`timestamp`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-/*Data for the table `google_auth_attempts` */
-
-insert  into `google_auth_attempts`(`id`,`ip`,`timestamp`) values (1,'127.0.0.1','2025-06-30 02:51:42');
 
 /*Table structure for table `menu_items` */
 
@@ -89,9 +78,7 @@ CREATE TABLE `menu_items` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`item_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-/*Data for the table `menu_items` */
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Table structure for table `order_items` */
 
@@ -109,9 +96,7 @@ CREATE TABLE `order_items` (
   KEY `item_id` (`item_id`),
   CONSTRAINT `order_items_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`) ON DELETE CASCADE,
   CONSTRAINT `order_items_ibfk_2` FOREIGN KEY (`item_id`) REFERENCES `menu_items` (`item_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-/*Data for the table `order_items` */
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Table structure for table `orders` */
 
@@ -133,9 +118,7 @@ CREATE TABLE `orders` (
   KEY `address_id` (`address_id`),
   CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE,
   CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`address_id`) REFERENCES `user_addresses` (`address_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-/*Data for the table `orders` */
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Table structure for table `otp_codes` */
 
@@ -155,8 +138,6 @@ CREATE TABLE `otp_codes` (
   KEY `expires_at` (`expires_at`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-/*Data for the table `otp_codes` */
-
 /*Table structure for table `password_reset_tokens` */
 
 DROP TABLE IF EXISTS `password_reset_tokens`;
@@ -173,9 +154,7 @@ CREATE TABLE `password_reset_tokens` (
   KEY `user_id` (`user_id`),
   KEY `expires_at` (`expires_at`),
   CONSTRAINT `password_reset_tokens_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-/*Data for the table `password_reset_tokens` */
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Table structure for table `remember_tokens` */
 
@@ -193,9 +172,7 @@ CREATE TABLE `remember_tokens` (
   KEY `token` (`token`),
   KEY `expires_at` (`expires_at`),
   CONSTRAINT `remember_tokens_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-/*Data for the table `remember_tokens` */
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Table structure for table `user_addresses` */
 
@@ -204,7 +181,7 @@ DROP TABLE IF EXISTS `user_addresses`;
 CREATE TABLE `user_addresses` (
   `address_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
-  `address_type` VARCHAR(50) NOT NULL DEFAULT 'Home',
+  `address_type` enum('Home','Office','Other') NOT NULL DEFAULT 'Home',
   `address_line` text NOT NULL,
   `latitude` decimal(10,8) NOT NULL,
   `longitude` decimal(11,8) NOT NULL,
@@ -213,13 +190,8 @@ CREATE TABLE `user_addresses` (
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`address_id`),
   KEY `user_id` (`user_id`),
-  CONSTRAINT `user_addresses_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE,
-  CONSTRAINT `chk_address_type` CHECK (address_type IN ('Home', 'Office', 'Other') OR LENGTH(address_type) <= 50)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-/*Data for the table `user_addresses` */
-
-insert  into `user_addresses`(`address_id`,`user_id`,`address_type`,`address_line`,`latitude`,`longitude`,`is_default`,`created_at`,`updated_at`) values (2,1,'Home','Jl. Taman Kopo Indah III Ruko G No.25, Mekar Rahayu, Margaasih, Bandung Regency, West Java 40218, Indonesia','-6.96992930','107.55145770',1,'2025-06-30 03:48:53','2025-06-30 03:48:53');
+  CONSTRAINT `user_addresses_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Table structure for table `users` */
 
@@ -239,10 +211,6 @@ CREATE TABLE `users` (
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-/*Data for the table `users` */
-
-insert  into `users`(`user_id`,`username`,`email`,`password_hash`,`google_auth`,`created_at`,`last_login`,`is_active`,`is_verified`,`initial_data_complete`) values (1,'jcgytshorts','jcgytshorts@gmail.com',NULL,1,'2025-06-30 02:51:43',NULL,1,1,0);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
