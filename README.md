@@ -81,10 +81,8 @@ HealthyDash adalah platform pemesanan makanan sehat berbasis web yang dirancang 
 ### 👤 Profil Pengguna
 
 - **Account Management**
-  - Edit profil pengguna
-  - Ganti password
+  
   - Riwayat pesanan
-  - Pengaturan notifikasi
 
 ### 🔒 Keamanan & Privasi
 
